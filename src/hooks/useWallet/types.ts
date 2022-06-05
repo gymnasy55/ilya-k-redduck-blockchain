@@ -6,5 +6,5 @@ export type UseWallet = () => {
   active: boolean;
   activateWallet: () => Promise<void>;
   deactivateWallet: () => void;
-  account: string | null | undefined;
+  account: string;
 };

@@ -1,4 +1,4 @@
-import { Box, SkeletonCircle } from '@chakra-ui/react';
+import { Avatar, Box } from '@chakra-ui/react';
 import Jazzicon from '@metamask/jazzicon';
 import React, { FC } from 'react';
 
@@ -13,7 +13,7 @@ export const Identicon: FC<IdenticonProps> = ({ account, height }) => {
       }}
     />
   ) : (
-    <SkeletonCircle height={`${height}px`} width={`${height}px`} />
+    <Avatar src="" height={`${height}px`} width={`${height}px`} />
   );
 };
 

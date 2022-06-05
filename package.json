@@ -5,6 +5,7 @@
   "dependencies": {
     "@chakra-ui/icons": "^2.0.1",
     "@chakra-ui/react": "^2.1.1",
+    "@download/blockies": "^1.0.3",
     "@emotion/react": "^11.0.0",
     "@emotion/styled": "^11.0.0",
     "@metamask/jazzicon": "^2.0.0",

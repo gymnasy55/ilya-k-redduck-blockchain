@@ -2,3 +2,8 @@ export * from './Menu';
 export * from './RenderRoutes';
 export * from './Providers';
 export * from './Identicon';
+export * from './Blockicon';
+export * from './Header';
+export * from './RenderIfElse';
+export * from './PageLayout';
+export * from './Navigation';
