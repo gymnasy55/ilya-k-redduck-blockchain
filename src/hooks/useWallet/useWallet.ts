@@ -1,3 +1,4 @@
+import { useToast } from '@chakra-ui/react';
 import { useWeb3React } from '@web3-react/core';
 import { InjectedConnector } from '@web3-react/injected-connector';
 import { providers } from 'ethers';
@@ -16,9 +17,9 @@ export const useWallet: UseWallet = () => {
       }),
     [],
   );
-
   const { provider, setProvider } = useContext(ProviderContext);
   const { account, activate, active, deactivate, chainId } = useWeb3React();
+  const toast = useToast();
 
   useEffect(() => {
     if (active && account && !provider) {
@@ -28,8 +29,26 @@ export const useWallet: UseWallet = () => {
     }
   }, [active, account, connector, provider]);
 
-  const activateWallet = () =>
-    activate(connector, undefined, true).catch((e) => console.error(e));
+  const activateWallet = async () => {
+    try {
+      await activate(connector, undefined, true);
+      toast({
+        title: 'Wallet connected.',
+        description: "We've connected your wallet successfully.",
+        status: 'success',
+        position: 'bottom-right',
+        isClosable: true,
+      });
+    } catch (e) {
+      toast({
+        title: 'Failed to connect wallet.',
+        description: 'Something went wrong while connecting the wallet.',
+        status: 'error',
+        position: 'bottom-right',
+        isClosable: true,
+      });
+    }
+  };
 
   const deactivateWallet = () => {
     deactivate();
@@ -37,7 +56,7 @@ export const useWallet: UseWallet = () => {
   };
 
   return {
-    account,
+    account: account || '',
     activateWallet,
     active,
     chainId,

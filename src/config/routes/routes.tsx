@@ -3,8 +3,7 @@ import { Navigate, RouteObject } from 'react-router-dom';
 
 import { ROUTES } from './constants';
 
-import { HomePage } from '../../pages/HomePage';
-import { RootPage } from '../../pages/RootPage';
+import { RootPage, HomePage } from '../../pages';
 
 export const routesConfig: RouteObject[] = [
   {

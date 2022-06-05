@@ -1,19 +1,30 @@
-import { Button, useDisclosure } from '@chakra-ui/react';
+import { GridItem } from '@chakra-ui/react';
 import React, { FC } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import { Menu } from '../../components/Menu/Menu';
+import { Header, Navigation, PageLayout } from '../../components';
+import { usePageLayout, useRedirectToHome } from '../../hooks';
 
 export const RootPage: FC = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [templateAreas, gridTemplateRows, gridTemplateColumns] =
+    usePageLayout();
+  useRedirectToHome();
 
   return (
-    <>
-      <Button colorScheme="telegram" onClick={onOpen}>
-        Open
-      </Button>
-      <Menu isOpen={isOpen} onClose={onClose} />
-      <Outlet />
-    </>
+    <PageLayout
+      templateAreas={templateAreas}
+      gridTemplateRows={gridTemplateRows}
+      gridTemplateColumns={gridTemplateColumns}
+    >
+      <GridItem area="header">
+        <Header />
+      </GridItem>
+      <GridItem area="nav">
+        <Navigation />
+      </GridItem>
+      <GridItem area="main">
+        <Outlet />
+      </GridItem>
+    </PageLayout>
   );
 };
